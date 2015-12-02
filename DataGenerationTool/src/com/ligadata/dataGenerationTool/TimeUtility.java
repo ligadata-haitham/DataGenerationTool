@@ -6,7 +6,7 @@ import com.ligadata.dataGenerationToolBean.ConfigObj;
 
 public class TimeUtility {
 
-	public String CheckTimeFormat(String timeUnit) {// return date format to put
+	public String CheckTimeUnit(String timeUnit) {// return date format to put
 													// it as name for file
 		switch (timeUnit.toLowerCase().substring(timeUnit.length() - 1)) {
 		case "m":
@@ -22,7 +22,7 @@ public class TimeUtility {
 		}
 	}
 
-	public boolean CheckCurrentTime(String endTime, String timeFormat) {
+	public boolean CreateNewFile(String endTime, String timeFormat) {
 		// this method used to check if current time equal end time to create a
 		// new file
 		String currentTime = new SimpleDateFormat(timeFormat).format(System
@@ -34,12 +34,11 @@ public class TimeUtility {
 
 	}
 
-	public double RunDurationTime() {
+	public double RunDurationTime(ConfigObj configObj) {
 		// this method used to find run duration for tool
-		ConfigObj config = new ConfigObj();
 		double currentTime = System.currentTimeMillis();
 		double loopEndTime = currentTime
-				+ (3600000 * (config.getDurationInHours()));
+				+ (3600000 * (configObj.getDurationInHours()));
 		return loopEndTime;
 
 	}

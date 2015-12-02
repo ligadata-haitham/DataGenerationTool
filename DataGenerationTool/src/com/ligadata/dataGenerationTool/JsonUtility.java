@@ -23,7 +23,6 @@ public class JsonUtility {
 
 			stringBuffer.append(line).append("\n");
 		}
-		System.out.println(stringBuffer);
 
 		String configJsonString = stringBuffer.toString();
 		JSONObject req = new JSONObject(configJsonString);
@@ -47,7 +46,7 @@ public class JsonUtility {
 		return fields;
 	}
 
-	public ConfigObj JsonConfig(JSONObject configJson) {
+	public ConfigObj CreateConfigObj(JSONObject configJson) {
 		ConfigObj configObj = new ConfigObj();
 		configObj.setDataGenerationRate(configJson
 				.getDouble("DataGenerationRate"));

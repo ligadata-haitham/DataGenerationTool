@@ -63,7 +63,7 @@ public class ConfigObj {
 		this.pushToKafka = pushToKafka;
 	}
 
-	public String getFileSplitPers() {
+	public String getFileSplitPer() {
 		return FileSplitPer;
 	}
 

@@ -10,11 +10,19 @@ import com.ligadata.dataGenerationToolBean.ConfigObj;
 
 public class FilesUtility {
 
-	public void writeFile(String record, String Path) throws IOException {
+	public void writeFile(String record, String Path, ConfigObj configObj) throws IOException {
 
-		String fileName = new SimpleDateFormat("yyyy-MM-dd-HH").format(System
-				.currentTimeMillis());
-
+		TimeUtility time = new TimeUtility();
+		
+		String fileSplitPer = configObj.getFileSplitPer();
+		String fileNameFormat = time.CheckTimeUnit(fileSplitPer.substring(fileSplitPer.length() - 1));
+		int timeAmountForFileSplit = Integer.valueOf(fileSplitPer.substring(0,fileSplitPer.length()-1));
+		
+		// add code to change file name based on time 
+		
+		String fileName="" ;
+		
+		
 		File file = new File(Path + fileName);
 		System.out.println("filename" + file);
 
