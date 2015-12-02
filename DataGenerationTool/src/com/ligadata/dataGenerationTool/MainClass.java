@@ -15,31 +15,31 @@ public class MainClass {
 
 	public static void main(String[] args) throws InterruptedException,
 			IOException {
+		// create object
+		JsonUtility json = new JsonUtility();
+		GenerateRecord record = new GenerateRecord();
+		FilesUtility file = new FilesUtility();
+		TimeUtility time = new TimeUtility();
 		// read configuration file
-		String configFileLocation = args[0];// "C:\\Users\\haitham-pc\\Desktop\\DataGenerationConfig.json";
-		JSONObject configJson = JsonUtility.ReadJsonFile(configFileLocation);
-		ConfigObj configObj = JsonUtility.JsonConfig(configJson);
+		String configFileLocation = args[0];
+		JSONObject configJson = json.ReadJsonFile(configFileLocation);
+		ConfigObj configObj = json.JsonConfig(configJson);
 		// DurationInHours
-		double currentTime = System.currentTimeMillis();
-		double loopEndTime = currentTime
-				+ (3600000 * (configObj.getDurationInHours()));
+		double loopEndTime = time.RunDurationTime();
 
 		HashMap<String, String> fields = new HashMap<String, String>();
-
 		while (System.currentTimeMillis() < loopEndTime) {
-			fields = JsonUtility.ReadMessageFields(configJson);
-			String record = GenerateRecord.GenerateHit(fields,
-					configObj.getDelimiter());
-			System.out.println(record);
+			fields = json.ReadMessageFields(configJson);
+			String hit = record.GenerateHit(fields, configObj.getDelimiter());
+			System.out.println(hit);
 
 			if (configObj.isDropInFiles()) {
-				FilesUtility.writeFile(record, args[2]);// destination path
+				file.writeFile(hit, args[2]);// destination path
 			} else if (configObj.isPushToKafka()) {
 				// code to push to kafka
 			}
 
-			double sleepInMS = 1000.0 / configObj.getDataGenerationRate();
-			Thread.sleep((long) sleepInMS);
+			Thread.sleep(time.SleepTime());
 		}
 
 	}

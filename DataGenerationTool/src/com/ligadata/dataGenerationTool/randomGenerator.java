@@ -4,7 +4,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 public class randomGenerator {
 
-	public static String CheckType(String FieldType, int length) {
+	public String CheckType(String FieldType, int length) {
 		String randomValue = null;
 		switch (FieldType) {
 		case "hybrid":
@@ -23,7 +23,7 @@ public class randomGenerator {
 		return randomValue;
 	}
 
-	public static String RandomHybrid(int length) {
+	public String RandomHybrid(int length) {
 
 		boolean useLetters = true;
 		boolean useNumbers = true;
@@ -33,7 +33,7 @@ public class randomGenerator {
 		return new String(generatedAlphabetic);
 	}
 
-	public static String RandomString(int length) {
+	public String RandomString(int length) {
 
 		boolean useLetters = true;
 		boolean useNumbers = false;
@@ -43,7 +43,7 @@ public class randomGenerator {
 		return new String(generatedString);
 	}
 
-	public static String RandomNumeric(int length) {
+	public String RandomNumeric(int length) {
 
 		String generatedNumeric = RandomStringUtils.randomNumeric(length);
 		// System.out.println(generatedNumeric);

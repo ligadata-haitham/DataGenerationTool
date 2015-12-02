@@ -10,9 +10,7 @@ import com.ligadata.dataGenerationToolBean.ConfigObj;
 
 public class FilesUtility {
 
-	public static void writeFile(String record, String Path) throws IOException {
-
-		String dataFolder = "C:\\Users\\Haitham\\Desktop\\GenereatedData";
+	public void writeFile(String record, String Path) throws IOException {
 
 		String fileName = new SimpleDateFormat("yyyy-MM-dd-HH").format(System
 				.currentTimeMillis());
@@ -31,4 +29,6 @@ public class FilesUtility {
 		bw.close();
 
 	}
+
+
 }

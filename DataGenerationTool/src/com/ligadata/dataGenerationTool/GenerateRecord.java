@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class GenerateRecord {
 
-	public static String GenerateHit(HashMap<String, String> record, String Delimiter) {
+	public String GenerateHit(HashMap<String, String> record, String Delimiter) {
 		String hit = "";
 		// Get a set of the entries
 		Set set = record.entrySet();
@@ -30,7 +30,7 @@ public class GenerateRecord {
 	}
 
 	// don't forget try catch
-	public static String GenerateRandomDateBetween(String startDate1,
+	public String GenerateRandomDateBetween(String startDate1,
 			String endDate1) throws ParseException {
 
 		DateFormat format = new SimpleDateFormat(

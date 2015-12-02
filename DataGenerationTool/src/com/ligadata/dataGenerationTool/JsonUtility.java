@@ -12,7 +12,7 @@ import com.ligadata.dataGenerationToolBean.ConfigObj;
 
 public class JsonUtility {
 
-	public static JSONObject ReadJsonFile(String messageFileString)
+	public  JSONObject ReadJsonFile(String messageFileString)
 			throws IOException {
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(
 				messageFileString));
@@ -31,7 +31,8 @@ public class JsonUtility {
 
 	}
 
-	public static HashMap<String, String> ReadMessageFields(JSONObject req) {
+	public HashMap<String, String> ReadMessageFields(JSONObject req) {
+		randomGenerator random = new randomGenerator();
 		JSONObject locs = req.getJSONObject("fields");
 		JSONArray recs = locs.getJSONArray("field");
 		HashMap<String, String> fields = new HashMap<String, String>();
@@ -40,13 +41,13 @@ public class JsonUtility {
 			String fieldName = rec.getString("name");
 			String fieldType = rec.getString("type");
 			int fieldLength = rec.getInt("length");
-			String value = randomGenerator.CheckType(fieldType, fieldLength);
+			String value = random.CheckType(fieldType, fieldLength);
 			fields.put(fieldName, value);
 		} // end for loop
 		return fields;
 	}
 
-	public static ConfigObj JsonConfig(JSONObject configJson) {
+	public ConfigObj JsonConfig(JSONObject configJson) {
 		ConfigObj configObj = new ConfigObj();
 		configObj.setDataGenerationRate(configJson
 				.getDouble("DataGenerationRate"));
