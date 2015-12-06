@@ -5,9 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import com.ligadata.dataGenerationToolBean.ConfigObj;
 import com.ligadata.dataGenerationToolBean.FileNameConfig;
 
@@ -27,7 +24,7 @@ public class FilesUtility {
 		
 		
 		String fileName;
-		boolean cond = fileNameConfig.getOldFileTime() == 0;
+		//boolean cond = fileNameConfig.getOldFileTime() == 0;
 		if (fileNameConfig.getOldFileTime() == 0) {
 			fileNameConfig.setOldFileTime(currentTime);
 		}

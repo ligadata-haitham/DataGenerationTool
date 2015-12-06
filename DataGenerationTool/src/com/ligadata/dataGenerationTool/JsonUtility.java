@@ -3,6 +3,7 @@ package com.ligadata.dataGenerationTool;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.HashMap;
 
 import org.json.JSONArray;
@@ -30,7 +31,7 @@ public class JsonUtility {
 
 	}
 
-	public HashMap<String, String> ReadMessageFields(JSONObject req) {
+	public HashMap<String, String> ReadMessageFields(JSONObject req) throws ParseException {
 		randomGenerator random = new randomGenerator();
 		JSONObject locs = req.getJSONObject("fields");
 		JSONArray recs = locs.getJSONArray("field");

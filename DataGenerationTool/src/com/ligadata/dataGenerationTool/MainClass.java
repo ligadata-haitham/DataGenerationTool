@@ -1,7 +1,7 @@
 package com.ligadata.dataGenerationTool;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.HashMap;
 
 import com.ligadata.dataGenerationToolBean.ConfigObj;
@@ -15,10 +15,11 @@ public class MainClass {
 	 * @param args
 	 * @throws InterruptedException
 	 * @throws IOException
+	 * @throws ParseException 
 	 */
 
 	public static void main(String[] args) throws InterruptedException,
-			IOException {
+			IOException, ParseException {
 		// initialize variables
 		String configFileLocation = "C:/Users/haitham-pc/Documents/GitHub/DataGenerationTool/JsonFiles/DataGenerationConfig.json"; // C:/Users/haitham-pc/Documents/GitHub/DataGenerationTool/JsonFiles/DataGenerationConfig.json
 		String templateFileLocation = "C:/Users/haitham-pc/Documents/GitHub/DataGenerationTool/JsonFiles/DataDefinitionTemplate.json"; // C:/Users/haitham-pc/Documents/GitHub/DataGenerationTool/JsonFiles/DataDefinitionTemplate.json

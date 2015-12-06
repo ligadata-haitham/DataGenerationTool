@@ -1,13 +1,9 @@
 package com.ligadata.dataGenerationTool;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 public class GenerateRecord {
@@ -15,9 +11,9 @@ public class GenerateRecord {
 	public String GenerateHit(HashMap<String, String> record, String Delimiter) {
 		String hit = "";
 		// Get a set of the entries
-		Set set = record.entrySet();
+		Set<Entry<String, String>> set = record.entrySet();
 		// Get an iterator
-		Iterator i = set.iterator();
+		Iterator<Entry<String, String>> i = set.iterator();
 		// Display elements
 		while (i.hasNext()) {
 			Map.Entry line = (Map.Entry) i.next();
@@ -28,30 +24,4 @@ public class GenerateRecord {
 		return hit;
 
 	}
-
-	// don't forget try catch
-	public String GenerateRandomDateBetween(String startDate1,
-			String endDate1) throws ParseException {
-
-		DateFormat format = new SimpleDateFormat(
-				"yyyy-MM-dd'T'HH:mm:ss.SSSSSSz", Locale.ENGLISH);
-		Date startDate = format.parse(startDate1);
-		Date endDate = format.parse(endDate1);
-
-		long startTimeStamp = startDate.getTime();
-		long endTimeStamp = endDate.getTime();
-
-		long range = endTimeStamp - startTimeStamp;
-		double result = (Math.random() * range) + startTimeStamp; // startDateCalendar.getTimeInMillis(),
-																	// endDateCalendar.getTimeInMillis());
-
-		Date d = new Date((long) result);
-
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSz");
-		String resultDateString = df.format(d);
-
-		return resultDateString;
-
-	}
-
 }
