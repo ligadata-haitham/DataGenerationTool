@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
 import org.apache.commons.lang3.RandomStringUtils;
 
 import com.ligadata.dataGenerationToolBean.ConfigObj;

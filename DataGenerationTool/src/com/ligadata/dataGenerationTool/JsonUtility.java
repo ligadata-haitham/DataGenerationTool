@@ -24,7 +24,7 @@ public class JsonUtility {
 
 			stringBuffer.append(line).append("\n");
 		}
-
+		bufferedReader.close();
 		String configJsonString = stringBuffer.toString();
 		JSONObject req = new JSONObject(configJsonString);
 		return req;
