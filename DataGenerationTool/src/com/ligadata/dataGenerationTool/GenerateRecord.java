@@ -18,8 +18,6 @@ public class GenerateRecord {
 		while (i.hasNext()) {
 			Map.Entry<String, String> line =  i.next();
 			hit = hit + line.getKey() + Delimiter + line.getValue() + Delimiter;
-			// System.out.print(line.getKey() + ": ");
-			// System.out.println(line.getValue());
 		}
 		return hit;
 

@@ -10,10 +10,9 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 import com.ligadata.dataGenerationToolBean.ConfigObj;
 
-public class randomGenerator {
+public class RandomGenerator {
 
-	public String CheckType(String FieldType, int length) throws ParseException {
-		ConfigObj configObj = new ConfigObj();
+	public String CheckType(String FieldType, int length ,ConfigObj configObj) throws ParseException {
 		String randomValue = null;
 		switch (FieldType.toLowerCase().trim()) {
 		case "hybrid":
@@ -27,6 +26,7 @@ public class randomGenerator {
 			break;
 		case "timestamp":
 			randomValue = RandomDateBetweenTwoDate(configObj.getStartDate(), configObj.getEndDate());
+			break;
 		default:
 			randomValue = null;
 			break;
@@ -40,7 +40,6 @@ public class randomGenerator {
 		boolean useNumbers = true;
 		String generatedAlphabetic = RandomStringUtils.random(length,
 				useLetters, useNumbers);
-		// System.out.println(generatedAlphabetic);
 		return new String(generatedAlphabetic);
 	}
 
@@ -50,20 +49,18 @@ public class randomGenerator {
 		boolean useNumbers = false;
 		String generatedString = RandomStringUtils.random(length, useLetters,
 				useNumbers);
-		// System.out.println(generatedString);
 		return new String(generatedString);
 	}
 
 	public String RandomNumeric(int length) {
 
 		String generatedNumeric = RandomStringUtils.randomNumeric(length);
-		// System.out.println(generatedNumeric);
 		return new String(generatedNumeric);
 	}
 	
 	public String RandomDateBetweenTwoDate(String strDate,
 			String edDate) throws ParseException {
-
+		
 		DateFormat format = new SimpleDateFormat(
 				"yyyy-MM-dd'T'HH:mm:ss.SSSSSSz", Locale.ENGLISH);
 		Date startDate = format.parse(strDate);

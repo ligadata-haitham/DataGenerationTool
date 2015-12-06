@@ -13,12 +13,9 @@ public class FilesUtility {
 
 	public void writeFile(String record, String Path, ConfigObj configObj,FileNameConfig fileNameConfig) throws IOException {
 
-		TimeUtility time = new TimeUtility();
-//		FileNameConfig fileNameConfig = new FileNameConfig();
-//		
+		TimeUtility time = new TimeUtility();	
 		String fileSplitPer = configObj.getFileSplitPer();
 		String fileNameFormat = time.CheckTimeUnit(fileSplitPer.substring(fileSplitPer.length() - 1));
-//		int timeAmountForFileSplit = Integer.valueOf(fileSplitPer.substring(0,fileSplitPer.length()-1));
 		
 		double currentTime = System.currentTimeMillis();
 		
