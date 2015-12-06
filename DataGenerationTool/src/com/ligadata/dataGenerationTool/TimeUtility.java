@@ -4,11 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.ligadata.dataGenerationToolBean.ConfigObj;
+import com.ligadata.dataGenerationToolBean.FileNameConfig;
 
 public class TimeUtility {
 
-	public String CheckTimeUnit(String timeUnit) {// return date format to put
-													// it as name for file
+	public String CheckTimeUnit(String timeUnit) {
+													
 		switch (timeUnit.toLowerCase().substring(timeUnit.length() - 1).trim().toCharArray()[0]) {
 		case 'm':
 			return "yyyy-MM-dd-HH-mm";
@@ -23,12 +24,8 @@ public class TimeUtility {
 		}
 	}
 
-	public boolean CreateNewFile(ConfigObj configObj, String timeFormat,
+	public boolean CreateNewFile(ConfigObj configObj,FileNameConfig fileNameConfig,
 			double currentTime) {
-		// this method used to check if current time equal end time to create a
-		// new file
-		// String currentTime = new
-		// SimpleDateFormat(timeFormat).format(System.currentTimeMillis());
 
 		String fileSplitPer = configObj.getFileSplitPer();
 		int timeAmountForFileSplit = Integer.valueOf(fileSplitPer.substring(0,
@@ -56,16 +53,17 @@ public class TimeUtility {
 			multiplyFactor = 1000 * 60 * 60;
 		}
 
+		
 		endTime = currentTime + ( multiplyFactor * timeAmountForFileSplit);	
-
-		if (FilesUtility.nextFileTime == 0) {
-			FilesUtility.nextFileTime = endTime;
+				
+		if ((long)fileNameConfig.getNextFileTime() == 0) {
+			fileNameConfig.setNextFileTime(endTime);
 		}
 
 
-		if ( (long)currentTime >= (long)FilesUtility.nextFileTime) {   //  Double.compare(currentTime,FilesUtility.nextFileTime ) < 0
-			FilesUtility.oldFileTime = FilesUtility.nextFileTime;
-			FilesUtility.nextFileTime = endTime;
+		if ( (long)currentTime >= (long)fileNameConfig.getNextFileTime()) {   //  Double.compare(currentTime,FilesUtility.nextFileTime ) < 0
+			fileNameConfig.setOldFileTime(fileNameConfig.getNextFileTime());
+			fileNameConfig.setNextFileTime(endTime);
 			return true;
 		} else {
 			return false;

@@ -9,15 +9,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.ligadata.dataGenerationToolBean.ConfigObj;
+import com.ligadata.dataGenerationToolBean.FileNameConfig;
 
 public class FilesUtility {
 	
-	public static double nextFileTime ;
-	public static double oldFileTime ;
 
-	public void writeFile(String record, String Path, ConfigObj configObj) throws IOException {
+	public void writeFile(String record, String Path, ConfigObj configObj,FileNameConfig fileNameConfig) throws IOException {
 
 		TimeUtility time = new TimeUtility();
+//		FileNameConfig fileNameConfig = new FileNameConfig();
 //		
 		String fileSplitPer = configObj.getFileSplitPer();
 		String fileNameFormat = time.CheckTimeUnit(fileSplitPer.substring(fileSplitPer.length() - 1));
@@ -25,16 +25,18 @@ public class FilesUtility {
 		
 		double currentTime = System.currentTimeMillis();
 		
+		
 		String fileName;
-		if (FilesUtility.oldFileTime == 0) {
-			FilesUtility.oldFileTime = currentTime;
+		boolean cond = fileNameConfig.getOldFileTime() == 0;
+		if (fileNameConfig.getOldFileTime() == 0) {
+			fileNameConfig.setOldFileTime(currentTime);
 		}
 		//String reportDate = df.format(today);
 		
-		if (time.CreateNewFile(configObj,fileNameFormat,currentTime)) {
+		if (time.CreateNewFile(configObj,fileNameConfig,currentTime)) {
 			fileName = new SimpleDateFormat(fileNameFormat).format(currentTime);
 		} else{
-			fileName= new SimpleDateFormat(fileNameFormat).format(FilesUtility.oldFileTime);
+			fileName= new SimpleDateFormat(fileNameFormat).format(fileNameConfig.getOldFileTime());
 		}
 		
 		

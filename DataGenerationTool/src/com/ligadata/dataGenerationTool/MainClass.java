@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import com.ligadata.dataGenerationToolBean.ConfigObj;
+import com.ligadata.dataGenerationToolBean.FileNameConfig;
 
 import org.json.JSONObject;
 
@@ -28,6 +29,7 @@ public class MainClass {
 		GenerateRecord record = new GenerateRecord();
 		FilesUtility file = new FilesUtility();
 		TimeUtility time = new TimeUtility();
+		FileNameConfig fileNameConfig = new FileNameConfig();
 
 		// read configuration file
 		JSONObject configJson = json.ReadJsonFile(configFileLocation);
@@ -40,12 +42,12 @@ public class MainClass {
 		
 		HashMap<String, String> fields = new HashMap<String, String>();
 		while (System.currentTimeMillis() < loopEndTime) {
-			System.out.println("Generating Data...");
+//			System.out.println("Generating Data...");
 			fields = json.ReadMessageFields(templateJson);
 			String hit = record.GenerateHit(fields, configObj.getDelimiter());
 
 			if (configObj.isDropInFiles()) {
-				file.writeFile(hit, destiniationDirectory,configObj);// destination path
+				file.writeFile(hit, destiniationDirectory,configObj,fileNameConfig);// destination path
 			} else if (configObj.isPushToKafka()) {
 				// code to push to kafka
 			}
