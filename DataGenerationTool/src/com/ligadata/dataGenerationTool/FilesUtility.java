@@ -27,7 +27,7 @@ public class FilesUtility {
 		
 		
 		String fileName;
-		boolean cond = fileNameConfig.getOldFileTime() == 0;
+		
 		if (fileNameConfig.getOldFileTime() == 0) {
 			fileNameConfig.setOldFileTime(currentTime);
 		}

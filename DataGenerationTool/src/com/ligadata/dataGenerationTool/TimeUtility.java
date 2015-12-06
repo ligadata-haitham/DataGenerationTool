@@ -56,12 +56,12 @@ public class TimeUtility {
 		
 		endTime = currentTime + ( multiplyFactor * timeAmountForFileSplit);	
 				
-		if ((long)fileNameConfig.getNextFileTime() == 0) {
+		if (fileNameConfig.getNextFileTime() == 0) {
 			fileNameConfig.setNextFileTime(endTime);
 		}
 
 
-		if ( (long)currentTime >= (long)fileNameConfig.getNextFileTime()) {   //  Double.compare(currentTime,FilesUtility.nextFileTime ) < 0
+		if ( currentTime >= fileNameConfig.getNextFileTime()) {   //  Double.compare(currentTime,FilesUtility.nextFileTime ) < 0
 			fileNameConfig.setOldFileTime(fileNameConfig.getNextFileTime());
 			fileNameConfig.setNextFileTime(endTime);
 			return true;
