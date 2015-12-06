@@ -16,7 +16,7 @@ public class GenerateRecord {
 		Iterator<Entry<String, String>> i = set.iterator();
 		// Display elements
 		while (i.hasNext()) {
-			Map.Entry line = (Map.Entry) i.next();
+			Map.Entry<String, String> line =  i.next();
 			hit = hit + line.getKey() + Delimiter + line.getValue() + Delimiter;
 			// System.out.print(line.getKey() + ": ");
 			// System.out.println(line.getValue());

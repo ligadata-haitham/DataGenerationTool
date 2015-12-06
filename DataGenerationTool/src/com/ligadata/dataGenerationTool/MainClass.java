@@ -43,8 +43,8 @@ public class MainClass {
 		
 		HashMap<String, String> fields = new HashMap<String, String>();
 		while (System.currentTimeMillis() < loopEndTime) {
-//			System.out.println("Generating Data...");
-			fields = json.ReadMessageFields(templateJson);
+			//System.out.println("Generating Data...");
+			fields = json.ReadMessageFields(templateJson,configObj);
 			String hit = record.GenerateHit(fields, configObj.getDelimiter());
 
 			if (configObj.isDropInFiles()) {

@@ -31,8 +31,8 @@ public class JsonUtility {
 
 	}
 
-	public HashMap<String, String> ReadMessageFields(JSONObject req) throws ParseException {
-		randomGenerator random = new randomGenerator();
+	public HashMap<String, String> ReadMessageFields(JSONObject req,ConfigObj configObj) throws ParseException {
+		RandomGenerator random = new RandomGenerator();
 		JSONObject locs = req.getJSONObject("fields");
 		JSONArray recs = locs.getJSONArray("field");
 		HashMap<String, String> fields = new HashMap<String, String>();
@@ -41,7 +41,7 @@ public class JsonUtility {
 			String fieldName = rec.getString("name");
 			String fieldType = rec.getString("type");
 			int fieldLength = rec.getInt("length");
-			String value = random.CheckType(fieldType, fieldLength);
+			String value = random.CheckType(fieldType, fieldLength,configObj);
 			fields.put(fieldName, value);
 		} // end for loop
 		return fields;
