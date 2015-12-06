@@ -24,11 +24,6 @@ public class FilesUtility {
 		
 		
 		String fileName;
-<<<<<<< HEAD
-		//boolean cond = fileNameConfig.getOldFileTime() == 0;
-=======
-		
->>>>>>> origin/master
 		if (fileNameConfig.getOldFileTime() == 0) {
 			fileNameConfig.setOldFileTime(currentTime);
 		}
