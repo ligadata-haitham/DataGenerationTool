@@ -1,28 +1,36 @@
 package com.ligadata.dataGenerationTool;
 
+import org.apache.log4j.Logger;
 import com.ligadata.dataGenerationToolBean.ConfigObj;
 import com.ligadata.dataGenerationToolBean.FileNameConfig;
 
 public class TimeUtility {
+	final Logger logger = Logger.getLogger(TimeUtility.class);
 
 	public String CheckTimeUnit(String timeUnit) {
-													
-		switch (timeUnit.toLowerCase().substring(timeUnit.length() - 1).trim().toCharArray()[0]) {
+		logger.info("Checking time unit");
+		switch (timeUnit.toLowerCase().substring(timeUnit.length() - 1).trim()
+				.toCharArray()[0]) {
 		case 'm':
+			logger.info("End of checking time unit");
 			return "yyyy-MM-dd-HH-mm";
 		case 'h':
+			logger.info("End of checking time unit");
 			return "yyyy-MM-dd-HH";
 		case 's':
+			logger.info("End of checking time unit");
 			return "yyyy-MM-dd-HH-mm-ss";
 		case 'd':
+			logger.info("End of checking time unit");
 			return "yyyy-MM-dd";
 		default:
+			logger.info("End of checking time unit");
 			return "yyyy-MM-dd-HH";
 		}
 	}
 
-	public boolean CreateNewFile(ConfigObj configObj,FileNameConfig fileNameConfig,
-			double currentTime) {
+	public boolean CreateNewFile(ConfigObj configObj,
+			FileNameConfig fileNameConfig, double currentTime) {
 
 		String fileSplitPer = configObj.getFileSplitPer();
 		int timeAmountForFileSplit = Integer.valueOf(fileSplitPer.substring(0,
@@ -30,10 +38,11 @@ public class TimeUtility {
 		double multiplyFactor;
 		double endTime;
 
-
-		String temp = fileSplitPer.toLowerCase().substring(fileSplitPer.length() - 1);		
-		
-		switch (temp.trim().toCharArray()[0]) { //fileSplitPer.substring(fileSplitPer.length() - 1) 
+		String temp = fileSplitPer.toLowerCase().substring(
+				fileSplitPer.length() - 1);
+		logger.info("check if we need to create a new file or not");
+		switch (temp.trim().toCharArray()[0]) { // fileSplitPer.substring(fileSplitPer.length()
+												// - 1)
 		case 'd':
 			multiplyFactor = 1000 * 60 * 60 * 24;
 			break;
@@ -50,19 +59,20 @@ public class TimeUtility {
 			multiplyFactor = 1000 * 60 * 60;
 		}
 
-		
-		endTime = currentTime + ( multiplyFactor * timeAmountForFileSplit);	
-				
+		endTime = currentTime + (multiplyFactor * timeAmountForFileSplit);
+
 		if (fileNameConfig.getNextFileTime() == 0) {
 			fileNameConfig.setNextFileTime(endTime);
 		}
 
-
-		if ( currentTime >= fileNameConfig.getNextFileTime()) {   //  Double.compare(currentTime,FilesUtility.nextFileTime ) < 0
+		if (currentTime >= fileNameConfig.getNextFileTime()) { // Double.compare(currentTime,FilesUtility.nextFileTime
+																// ) < 0
 			fileNameConfig.setOldFileTime(fileNameConfig.getNextFileTime());
 			fileNameConfig.setNextFileTime(endTime);
+			logger.info("create new file : " + true);
 			return true;
 		} else {
+			logger.info("create new file : " + false);
 			return false;
 		}
 
@@ -70,9 +80,11 @@ public class TimeUtility {
 
 	public double RunDurationTime(ConfigObj configObj) {
 		// this method used to find run duration for tool
+		logger.info("check run duration time");
 		double currentTime = System.currentTimeMillis();
 		double loopEndTime = currentTime
 				+ (3600000 * (configObj.getDurationInHours()));
+		logger.info("run duration time is : "+ loopEndTime);
 		return loopEndTime;
 
 	}

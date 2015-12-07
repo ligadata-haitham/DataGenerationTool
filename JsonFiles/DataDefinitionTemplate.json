@@ -18,7 +18,7 @@
             },
             {
                 "name": "dateTime",
-                "type": "timestamp",
+                "type": "date",
                 "length": "1"
             },
             {

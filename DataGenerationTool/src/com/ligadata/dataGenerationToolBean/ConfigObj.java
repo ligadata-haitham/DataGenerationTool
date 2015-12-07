@@ -12,7 +12,7 @@ public class ConfigObj {
 	String delimiter;
 
 	public String getDelimiter() {
-		return delimiter;
+		return "\01";
 	}
 
 	public void setDelimiter(String delimiter) {

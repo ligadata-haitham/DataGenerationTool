@@ -6,5 +6,5 @@
   "DropInFiles": "true",
   "PushToKafka": "false",
   "FileSplitPer": "5s",
-  "Delimiter": "\\01"
+  "Delimiter": "\u0001"
 }
