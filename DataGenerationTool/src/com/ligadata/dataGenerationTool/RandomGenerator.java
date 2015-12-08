@@ -21,7 +21,16 @@ public class RandomGenerator {
 		case "string":
 			randomValue = RandomString(length);
 			break;
+		case "double":
+			int precision = 2;
+			String randomNumric = RandomNumeric(length - precision);
+			String randomNumric2 = RandomNumeric(precision);
+			randomValue = randomNumric + "." + randomNumric2;
+			break;
 		case "integer":
+			randomValue = RandomNumeric(length);
+			break;
+		case "long":
 			randomValue = RandomNumeric(length);
 			break;
 		case "timestamp":

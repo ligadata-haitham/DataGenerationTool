@@ -93,8 +93,7 @@ public class JsonUtility {
 				+ configJson.getBoolean("PushToKafka"));
 		logger.info("Value of FileSplitPer: "
 				+ configJson.getString("FileSplitPer"));
-		logger.info("Value of Delimiter: "
-				+ configJson.getString("Delimiter"));
+		logger.info("Value of Delimiter: " + configJson.getString("Delimiter"));
 		logger.info("Parsing JSON object to config object successful.");
 		return configObj;
 	}

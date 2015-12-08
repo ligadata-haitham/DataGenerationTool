@@ -7,6 +7,7 @@ import java.util.HashMap;
 import com.ligadata.dataGenerationToolBean.ConfigObj;
 import com.ligadata.dataGenerationToolBean.FileNameConfig;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.json.JSONObject;
 
 public class MainClass {
@@ -15,7 +16,7 @@ public class MainClass {
 	 * @param args
 	 * @throws InterruptedException
 	 * @throws IOException
-	 * @throws ParseException 
+	 * @throws ParseException
 	 */
 
 	public static void main(String[] args) throws InterruptedException,
@@ -36,23 +37,25 @@ public class MainClass {
 		JSONObject configJson = json.ReadJsonFile(configFileLocation);
 		ConfigObj configObj = json.CreateConfigObj(configJson);
 		JSONObject templateJson = json.ReadJsonFile(templateFileLocation);
-		//ConfigObj configObj = json.CreateConfigObj(configJson);
-		
-		// DurationInHours		 
+		// ConfigObj configObj = json.CreateConfigObj(configJson);
+
+		// DurationInHours
 		double loopEndTime = time.RunDurationTime(configObj);
+		
 		
 		HashMap<String, String> fields = new HashMap<String, String>();
 		while (System.currentTimeMillis() < loopEndTime) {
-			//System.out.println("Generating Data...");
-			fields = json.ReadMessageFields(templateJson,configObj);
+			// System.out.println("Generating Data...");
+			fields = json.ReadMessageFields(templateJson, configObj);
 			String hit = record.GenerateHit(fields, configObj.getDelimiter());
 
 			if (configObj.isDropInFiles()) {
-				file.writeFile(hit, destiniationDirectory,configObj,fileNameConfig);// destination path
+				file.writeFile(hit, destiniationDirectory, configObj,
+						fileNameConfig);// destination path
 			} else if (configObj.isPushToKafka()) {
 				// code to push to kafka
 			}
-			
+
 			Thread.sleep(time.SleepTime(configObj));
 		}
 
