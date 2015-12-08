@@ -14,7 +14,7 @@ public class JsonUtility {
 	final Logger logger = Logger.getLogger(JsonUtility.class);
 
 	public JSONObject ReadJsonFile(String messageFileString) {
-		logger.info("Start reading JSON file");
+		logger.info("Reading JSON file...");
 		BufferedReader bufferedReader;
 		JSONObject req = null;
 		try {
@@ -36,7 +36,7 @@ public class JsonUtility {
 			logger.error(e);
 
 		} finally {
-			logger.info("Done from reading JSON file");
+			logger.info("Reading JSON file successful.");
 		}
 		return req;
 
@@ -44,7 +44,7 @@ public class JsonUtility {
 
 	public HashMap<String, String> ReadMessageFields(JSONObject req,
 			ConfigObj configObj) {
-		logger.info("Start parsing JSON file");
+		logger.info("Parsing JSON file...");
 		RandomGenerator random = new RandomGenerator();
 		JSONObject locs = req.getJSONObject("fields");
 		JSONArray recs = locs.getJSONArray("field");
@@ -63,13 +63,13 @@ public class JsonUtility {
 			e.printStackTrace();
 			logger.error(e);
 		} finally {
-			logger.info("Done from parsing JSON file");
+			logger.info("Parsing JSON file successful.");
 		}
 		return fields;
 	}
 
 	public ConfigObj CreateConfigObj(JSONObject configJson) {
-		logger.info("Start set configuration");
+		logger.info("Parsing JSON object to config object...");
 		ConfigObj configObj = new ConfigObj();
 		configObj.setDataGenerationRate(configJson
 				.getDouble("DataGenerationRate"));
@@ -80,22 +80,22 @@ public class JsonUtility {
 		configObj.setPushToKafka(configJson.getBoolean("PushToKafka"));
 		configObj.setFileSplitPer(configJson.getString("FileSplitPer"));
 		configObj.setDelimiter(configJson.getString("Delimiter"));
-		logger.info("The value of DataGenerationRate: "
+		logger.info("Value of DataGenerationRate: "
 				+ configJson.getDouble("DataGenerationRate"));
-		logger.info("The value of StartDate: "
+		logger.info("Value of StartDate: "
 				+ configJson.getString("StartDate"));
-		logger.info("The value of EndDate: " + configJson.getString("EndDate"));
-		logger.info("The value of DurationInHours: "
+		logger.info("Value of EndDate: " + configJson.getString("EndDate"));
+		logger.info("Value of DurationInHours: "
 				+ configJson.getDouble("DurationInHours"));
-		logger.info("The value of DropInFiles: "
+		logger.info("Value of DropInFiles: "
 				+ configJson.getBoolean("DropInFiles"));
-		logger.info("The value of PushToKafka: "
+		logger.info("Value of PushToKafka: "
 				+ configJson.getBoolean("PushToKafka"));
-		logger.info("The value of FileSplitPer: "
+		logger.info("Value of FileSplitPer: "
 				+ configJson.getString("FileSplitPer"));
-		logger.info("The value of Delimiter: "
+		logger.info("Value of Delimiter: "
 				+ configJson.getString("Delimiter"));
-		logger.info("Done from set configuration");
+		logger.info("Parsing JSON object to config object successful.");
 		return configObj;
 	}
 }

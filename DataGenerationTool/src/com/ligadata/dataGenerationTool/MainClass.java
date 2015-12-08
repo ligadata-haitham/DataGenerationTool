@@ -22,9 +22,9 @@ public class MainClass {
 			IOException, ParseException {
 
 		// initialize variables
-		String configFileLocation = "C:/Users/Yousef/Documents/GitHub/DataGenerationTool/JsonFiles/DataGenerationConfig.json";
-		String templateFileLocation = "C:/Users/Yousef/Documents/GitHub/DataGenerationTool/JsonFiles/DataDefinitionTemplate.json";
-		String destiniationDirectory = "C:/Users/Yousef/Desktop/GenereatedData/"; // C:/Users/haitham-pc/Desktop/GenereatedData/
+		String configFileLocation = "C:/Users/haitham-pc/Documents/GitHub/DataGenerationTool/JsonFiles/DataGenerationConfig.json";
+		String templateFileLocation = "C:/Users/haitham-pc/Documents/GitHub/DataGenerationTool/JsonFiles/DataDefinitionTemplate.json";
+		String destiniationDirectory = "C:/Users/haitham-pc/Desktop/GenereatedData/"; // C:/Users/Yousef/Desktop/GenereatedData/
 		// create object
 		JsonUtility json = new JsonUtility();
 		GenerateRecord record = new GenerateRecord();

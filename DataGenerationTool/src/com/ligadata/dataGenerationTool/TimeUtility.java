@@ -8,25 +8,35 @@ public class TimeUtility {
 	final Logger logger = Logger.getLogger(TimeUtility.class);
 
 	public String CheckTimeUnit(String timeUnit) {
-		logger.info("Checking time unit");
+		logger.info("Checking time unit...");
+
+		String retValue;
+
 		switch (timeUnit.toLowerCase().substring(timeUnit.length() - 1).trim()
 				.toCharArray()[0]) {
 		case 'm':
 			logger.info("End of checking time unit");
-			return "yyyy-MM-dd-HH-mm";
+			retValue = "yyyy-MM-dd-HH-mm";
+			break;
 		case 'h':
 			logger.info("End of checking time unit");
-			return "yyyy-MM-dd-HH";
+			retValue = "yyyy-MM-dd-HH";
+			break;
 		case 's':
 			logger.info("End of checking time unit");
-			return "yyyy-MM-dd-HH-mm-ss";
+			retValue = "yyyy-MM-dd-HH-mm-ss";
+			break;
 		case 'd':
 			logger.info("End of checking time unit");
-			return "yyyy-MM-dd";
+			retValue = "yyyy-MM-dd";
+			break;
 		default:
-			logger.info("End of checking time unit");
-			return "yyyy-MM-dd-HH";
+			retValue = "yyyy-MM-dd-HH";
 		}
+
+		logger.info("Time unit : " + retValue);
+		return retValue;
+
 	}
 
 	public boolean CreateNewFile(ConfigObj configObj,
@@ -40,7 +50,7 @@ public class TimeUtility {
 
 		String temp = fileSplitPer.toLowerCase().substring(
 				fileSplitPer.length() - 1);
-		logger.info("check if we need to create a new file or not");
+		logger.info("Check the need to create a new file...");
 		switch (temp.trim().toCharArray()[0]) { // fileSplitPer.substring(fileSplitPer.length()
 												// - 1)
 		case 'd':
@@ -69,10 +79,10 @@ public class TimeUtility {
 																// ) < 0
 			fileNameConfig.setOldFileTime(fileNameConfig.getNextFileTime());
 			fileNameConfig.setNextFileTime(endTime);
-			logger.info("create new file : " + true);
+			logger.info("Create new file : " + true);
 			return true;
 		} else {
-			logger.info("create new file : " + false);
+			logger.info("Create new file : " + false);
 			return false;
 		}
 
@@ -80,11 +90,11 @@ public class TimeUtility {
 
 	public double RunDurationTime(ConfigObj configObj) {
 		// this method used to find run duration for tool
-		logger.info("check run duration time");
+		logger.info("Calculate run duration time...");
 		double currentTime = System.currentTimeMillis();
 		double loopEndTime = currentTime
 				+ (3600000 * (configObj.getDurationInHours()));
-		logger.info("run duration time is : "+ loopEndTime);
+		logger.info("LoopEndTime is : " + loopEndTime);
 		return loopEndTime;
 
 	}

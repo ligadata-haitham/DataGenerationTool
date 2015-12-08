@@ -15,7 +15,7 @@ public class FilesUtility {
 
 	public void writeFile(String record, String Path, ConfigObj configObj,
 			FileNameConfig fileNameConfig) {
-		logger.info("Start writting on file ...");
+		logger.info("Writting to file ...");
 		TimeUtility time = new TimeUtility();
 		String fileSplitPer = configObj.getFileSplitPer();
 		String fileNameFormat = time.CheckTimeUnit(fileSplitPer
@@ -53,7 +53,7 @@ public class FilesUtility {
 			e.printStackTrace();
 			logger.error(e);
 		} finally {
-			logger.info("Done from writting file");
+			logger.info("Writting to file successful.");
 		}
 
 	}

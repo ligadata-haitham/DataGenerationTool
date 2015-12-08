@@ -5,6 +5,6 @@
   "DurationInHours": "2",
   "DropInFiles": "true",
   "PushToKafka": "false",
-  "FileSplitPer": "5s",
+  "FileSplitPer": "10s",
   "Delimiter": "\u0001"
 }
