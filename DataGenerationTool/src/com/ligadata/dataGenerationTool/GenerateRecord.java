@@ -19,6 +19,10 @@ public class GenerateRecord {
 			Map.Entry<String, String> line =  i.next();
 			hit = hit + line.getKey() + Delimiter + line.getValue() + Delimiter;
 		}
+		
+		if ( hit.endsWith(Delimiter)){
+			hit = hit.substring(0, hit.length()-1);
+		}
 		return hit;
 
 	}

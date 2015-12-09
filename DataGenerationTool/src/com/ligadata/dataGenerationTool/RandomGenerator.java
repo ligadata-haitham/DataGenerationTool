@@ -21,6 +21,9 @@ public class RandomGenerator {
 		case "string":
 			randomValue = RandomString(length);
 			break;
+		case "char":
+			randomValue = RandomString(1);
+			break;
 		case "double":
 			int precision = 2;
 			String randomNumric = RandomNumeric(length - precision);
