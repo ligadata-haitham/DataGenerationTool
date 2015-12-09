@@ -8,41 +8,33 @@ public class TimeUtility {
 	final Logger logger = Logger.getLogger(TimeUtility.class);
 
 	public String CheckTimeUnit(String timeUnit) {
-		logger.info("Checking time unit...");
 
 		String retValue;
 
 		switch (timeUnit.toLowerCase().substring(timeUnit.length() - 1).trim()
 				.toCharArray()[0]) {
 		case 'm':
-			logger.info("End of checking time unit");
 			retValue = "yyyy-MM-dd-HH-mm";
 			break;
 		case 'h':
-			logger.info("End of checking time unit");
 			retValue = "yyyy-MM-dd-HH";
 			break;
 		case 's':
-			logger.info("End of checking time unit");
 			retValue = "yyyy-MM-dd-HH-mm-ss";
 			break;
 		case 'd':
-			logger.info("End of checking time unit");
 			retValue = "yyyy-MM-dd";
 			break;
 		default:
 			retValue = "yyyy-MM-dd-HH";
 		}
-
-		logger.info("Time unit : " + retValue);
 		return retValue;
 
 	}
 
-	public boolean CreateNewFile(ConfigObj configObj,
+	public boolean CreateNewFile(String fileSplitPer,
 			FileNameConfig fileNameConfig, double currentTime) {
 
-		String fileSplitPer = configObj.getFileSplitPer();
 		int timeAmountForFileSplit = Integer.valueOf(fileSplitPer.substring(0,
 				fileSplitPer.length() - 1));
 		double multiplyFactor;
@@ -50,7 +42,6 @@ public class TimeUtility {
 
 		String temp = fileSplitPer.toLowerCase().substring(
 				fileSplitPer.length() - 1);
-		logger.info("Check the need to create a new file...");
 		switch (temp.trim().toCharArray()[0]) { // fileSplitPer.substring(fileSplitPer.length()
 												// - 1)
 		case 'd':
@@ -79,10 +70,8 @@ public class TimeUtility {
 																// ) < 0
 			fileNameConfig.setOldFileTime(fileNameConfig.getNextFileTime());
 			fileNameConfig.setNextFileTime(endTime);
-			logger.info("Create new file : " + true);
 			return true;
 		} else {
-			logger.info("Create new file : " + false);
 			return false;
 		}
 
@@ -99,9 +88,9 @@ public class TimeUtility {
 
 	}
 
-	public long SleepTime(ConfigObj configObj) {
+	public long SleepTime(double dataGenerationRate) {
 		// this method used to calculate sleep duration
-		long sleepInMS = (long) (1000.0 / configObj.getDataGenerationRate());
+		long sleepInMS = (long) (1000.0 / dataGenerationRate);
 		return sleepInMS;
 	}
 }

@@ -44,7 +44,6 @@ public class JsonUtility {
 
 	public HashMap<String, String> ReadMessageFields(JSONObject req,
 			ConfigObj configObj) {
-		logger.info("Parsing JSON file...");
 		RandomGenerator random = new RandomGenerator();
 		JSONObject locs = req.getJSONObject("fields");
 		JSONArray recs = locs.getJSONArray("field");
@@ -62,8 +61,6 @@ public class JsonUtility {
 		} catch (ParseException e) {
 			e.printStackTrace();
 			logger.error(e);
-		} finally {
-			logger.info("Parsing JSON file successful.");
 		}
 		return fields;
 	}
@@ -80,10 +77,11 @@ public class JsonUtility {
 		configObj.setPushToKafka(configJson.getBoolean("PushToKafka"));
 		configObj.setFileSplitPer(configJson.getString("FileSplitPer"));
 		configObj.setDelimiter(configJson.getString("Delimiter"));
+		configObj.setTemplatePath(configJson.getString("TemplatePath"));
+		configObj.setDestiniationPath(configJson.getString("DestiniationPath"));
 		logger.info("Value of DataGenerationRate: "
 				+ configJson.getDouble("DataGenerationRate"));
-		logger.info("Value of StartDate: "
-				+ configJson.getString("StartDate"));
+		logger.info("Value of StartDate: " + configJson.getString("StartDate"));
 		logger.info("Value of EndDate: " + configJson.getString("EndDate"));
 		logger.info("Value of DurationInHours: "
 				+ configJson.getDouble("DurationInHours"));
@@ -93,7 +91,10 @@ public class JsonUtility {
 				+ configJson.getBoolean("PushToKafka"));
 		logger.info("Value of FileSplitPer: "
 				+ configJson.getString("FileSplitPer"));
-		logger.info("Value of Delimiter: " + configJson.getString("Delimiter"));
+		logger.info("Value of TemplatePath: "
+				+ configJson.getString("TemplatePath"));
+		logger.info("Value of LogFilePath: "
+				+ configJson.getString("DestiniationPath"));
 		logger.info("Parsing JSON object to config object successful.");
 		return configObj;
 	}

@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import com.ligadata.dataGenerationToolBean.ConfigObj;
 import com.ligadata.dataGenerationToolBean.FileNameConfig;
 import org.apache.log4j.Logger;
 
@@ -13,11 +12,9 @@ public class FilesUtility {
 
 	final Logger logger = Logger.getLogger(FilesUtility.class);
 
-	public void writeFile(String record, String Path, ConfigObj configObj,
+	public void writeFile(String record, String Path, String fileSplitPer,
 			FileNameConfig fileNameConfig) {
-		logger.info("Writting to file ...");
 		TimeUtility time = new TimeUtility();
-		String fileSplitPer = configObj.getFileSplitPer();
 		String fileNameFormat = time.CheckTimeUnit(fileSplitPer
 				.substring(fileSplitPer.length() - 1));
 
@@ -30,9 +27,10 @@ public class FilesUtility {
 			}
 			// String reportDate = df.format(today);
 
-			if (time.CreateNewFile(configObj, fileNameConfig, currentTime)) {
+			if (time.CreateNewFile(fileSplitPer, fileNameConfig, currentTime)) {
 				fileName = new SimpleDateFormat(fileNameFormat)
 						.format(currentTime);
+				logger.info("writing on " + fileName);
 			} else {
 				fileName = new SimpleDateFormat(fileNameFormat)
 						.format(fileNameConfig.getOldFileTime());
@@ -52,10 +50,7 @@ public class FilesUtility {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.error(e);
-		} finally {
-			logger.info("Writting to file successful.");
 		}
-
 	}
 
 }

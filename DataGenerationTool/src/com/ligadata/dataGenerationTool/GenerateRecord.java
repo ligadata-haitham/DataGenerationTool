@@ -16,13 +16,13 @@ public class GenerateRecord {
 		Iterator<Entry<String, String>> i = set.iterator();
 		// Display elements
 		while (i.hasNext()) {
-			Map.Entry<String, String> line =  i.next();
+			Map.Entry<String, String> line = i.next();
 			hit = hit + line.getKey() + Delimiter + line.getValue() + Delimiter;
 		}
-		
-		if ( hit.endsWith(Delimiter)){
-			hit = hit.substring(0, hit.length()-1);
-		}
+
+		 if ( hit.endsWith(Delimiter)){
+		 hit = hit.substring(0, hit.length()-1);
+		 }
 		return hit;
 
 	}

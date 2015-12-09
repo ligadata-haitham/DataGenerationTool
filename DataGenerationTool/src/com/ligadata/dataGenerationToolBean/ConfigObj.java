@@ -10,9 +10,27 @@ public class ConfigObj {
 	boolean pushToKafka;
 	String FileSplitPer;
 	String delimiter;
+	String TemplatePath;
+	String DestiniationPath;
+
+	public String getDestiniationPath() {
+		return DestiniationPath;
+	}
+
+	public void setDestiniationPath(String destiniationPath) {
+		DestiniationPath = destiniationPath;
+	}
+
+	public String getTemplatePath() {
+		return TemplatePath;
+	}
+
+	public void setTemplatePath(String templatePath) {
+		this.TemplatePath = templatePath;
+	}
 
 	public String getDelimiter() {
-		return "\01";
+		return delimiter;
 	}
 
 	public void setDelimiter(String delimiter) {
